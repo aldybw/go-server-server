@@ -1,0 +1,300 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "Online Store"
+  contact: {}
+host: "localhost:8080"
+basePath: "/api/v1"
+tags:
+- name: "Misc"
+  description: ""
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /users:
+    post:
+      tags:
+      - "Misc"
+      summary: "Register User"
+      operationId: "RegisterUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        default: "Bearer {token}"
+        x-exportParamName: "Authorization"
+        x-optionalDataType: "String"
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/RegisterUserRequest"
+        x-exportParamName: "Body"
+      deprecated: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+  /sessions:
+    post:
+      tags:
+      - "Misc"
+      summary: "Login User"
+      operationId: "LoginUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        default: "Bearer {token}"
+        x-exportParamName: "Authorization"
+        x-optionalDataType: "String"
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/LoginUserRequest"
+        x-exportParamName: "Body"
+      deprecated: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+  /email_checkers:
+    post:
+      tags:
+      - "Misc"
+      summary: "Email Checking"
+      operationId: "EmailChecking"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        default: "Bearer {token}"
+        x-exportParamName: "Authorization"
+        x-optionalDataType: "String"
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/EmailCheckingRequest"
+        x-exportParamName: "Body"
+      deprecated: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+  /avatars:
+    post:
+      tags:
+      - "Misc"
+      summary: "Upload Avatar User"
+      operationId: "UploadAvatarUser"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        default: "Bearer {token}"
+        x-exportParamName: "Authorization"
+        x-optionalDataType: "String"
+      - name: "avatar"
+        in: "formData"
+        description: ""
+        required: true
+        type: "string"
+        x-exportParamName: "Avatar"
+      deprecated: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+  /products:
+    get:
+      tags:
+      - "Misc"
+      summary: "Get Products by Category"
+      operationId: "GetProductsbyCategory"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        default: "Bearer {token}"
+        x-exportParamName: "Authorization"
+        x-optionalDataType: "String"
+      - name: "category_id"
+        in: "query"
+        description: ""
+        required: true
+        type: "integer"
+        format: "int32"
+        x-exportParamName: "CategoryId"
+      deprecated: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+  /shoppingCarts:
+    get:
+      tags:
+      - "Misc"
+      summary: "Get Shopping Cart List"
+      operationId: "GetShoppingCartList"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        default: "Bearer {token}"
+        x-exportParamName: "Authorization"
+        x-optionalDataType: "String"
+      deprecated: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+    post:
+      tags:
+      - "Misc"
+      summary: "Add Shopping Cart"
+      operationId: "AddShoppingCart"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        default: "Bearer {token}"
+        x-exportParamName: "Authorization"
+        x-optionalDataType: "String"
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/AddShoppingCartRequest"
+        x-exportParamName: "Body"
+      deprecated: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+    delete:
+      tags:
+      - "Misc"
+      summary: "Delete Shopping Cart"
+      operationId: "DeleteShoppingCart"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        default: "Bearer {token}"
+        x-exportParamName: "Authorization"
+        x-optionalDataType: "String"
+      - in: "body"
+        name: "Body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/DeleteShoppingCartRequest"
+        x-exportParamName: "Body"
+      deprecated: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+securityDefinitions: {}
+definitions:
+  RegisterUserRequest:
+    type: "object"
+    required:
+    - "email"
+    - "name"
+    - "password"
+    properties:
+      name:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+    title: "RegisterUserRequest"
+    example:
+      name: "aldy register 1"
+      email: "aldyregister1@example.test"
+      password: "password"
+  LoginUserRequest:
+    type: "object"
+    required:
+    - "email"
+    - "password"
+    properties:
+      email:
+        type: "string"
+      password:
+        type: "string"
+    title: "LoginUserRequest"
+    example:
+      email: "aldyregister1@example.test"
+      password: "password"
+  EmailCheckingRequest:
+    type: "object"
+    required:
+    - "email"
+    properties:
+      email:
+        type: "string"
+    title: "EmailCheckingRequest"
+    example:
+      email: "aldyregister2@example.test"
+  AddShoppingCartRequest:
+    type: "object"
+    required:
+    - "product_id"
+    properties:
+      product_id:
+        type: "integer"
+        format: "int32"
+    title: "AddShoppingCartRequest"
+    example:
+      product_id: 4
+  DeleteShoppingCartRequest:
+    type: "object"
+    required:
+    - "id"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+    title: "DeleteShoppingCartRequest"
+    example:
+      id: 2
